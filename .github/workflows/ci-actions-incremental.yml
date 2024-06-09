@@ -145,6 +145,10 @@ jobs:
           job-name: "Initial JDK 17 Build"
           add-pr-comment: false
           add-job-summary: false
+      - name: FORMAT
+        run: ./mvnw -f extensions/spring-cloud-config-client/runtime net.revelc.code.formatter:formatter-maven-plugin:2.24.1:format 
+      - name: CAPTURE
+        run: cat ./extensions/spring-cloud-config-client/runtime/src/test/java/io/quarkus/spring/cloud/config/client/runtime/SpringCloudConfigClientConfigSourceFactoryTest.java
       - name: Build
         env:
           CAPTURE_BUILD_SCAN: true
